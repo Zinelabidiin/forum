@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prise de rendez-vous — Me Meryem El Ghiati, Notaire</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1B241E;
+      --deep: #22312A;
+      --deep-2: #2B3D33;
+      --parchment: #F1E9D8;
+      --parchment-2: #E8DEC7;
+      --brass: #A07C3E;
+      --brass-light: #C7A868;
+      --line: rgba(27, 36, 30, 0.14);
+      --line-on-deep: rgba(241, 233, 216, 0.18);
+      --text: #26241C;
+      --text-dim: #6B6656;
+      --serif: 'Fraunces', serif;
+      --sans: 'Inter', -apple-system, sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--parchment);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        radial-gradient(circle at 1px 1px, rgba(27, 36, 30, 0.05) 1px, transparent 0);
+      background-size: 22px 22px;
+      opacity: 0.5;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    ::selection {
+      background: var(--brass-light);
+      color: var(--ink);
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--brass);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* ===== LETTERHEAD ===== */
+    .letterhead {
+      background:
+        radial-gradient(140% 180% at 15% -20%, rgba(199, 168, 104, 0.10), transparent 55%),
+        linear-gradient(165deg, var(--deep-2), var(--deep) 70%);
+      color: var(--parchment);
+      padding: 20px 6vw 64px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .letterhead::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 6px;
+      background: linear-gradient(90deg, transparent, var(--brass-light) 20%, var(--brass-light) 80%, transparent);
+      opacity: 0.55;
+    }
+
+    .lh-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1180px;
+      margin: 0 auto 56px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: rgba(241, 233, 216, 0.55);
+      text-transform: uppercase;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line-on-deep);
+    }
+
+    .lh-bar span:last-child {
+      color: rgba(241, 233, 216, 0.4);
+    }
+
+    .lh-main {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .lh-copy .eyebrow {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--brass-light);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .lh-copy .eyebrow::before {
+      content: '';
+      width: 22px;
+      height: 1px;
+      background: var(--brass-light);
+    }
+
+    .lh-copy h1 {
+      font-family: var(--serif);
+      font-weight: 450;
+      font-size: clamp(2.2rem, 4.4vw, 3.4rem);
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      max-width: 14ch;
+    }
+
+    .lh-copy h1 em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--brass-light);
+    }
+
+    .lh-copy .sub {
+      margin-top: 20px;
+      font-size: 15px;
+      color: rgba(241, 233, 216, 0.68);
+      max-width: 46ch;
+      line-height: 1.7;
+    }
+
+    .lh-copy .practitioner {
+      margin-top: 28px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .practitioner .name {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-style: italic;
+    }
+
+    .practitioner .role {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.08em;
+      color: rgba(241, 233, 216, 0.5);
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    /* Seal */
+    .seal {
+      width: 190px;
+      height: 190px;
+      margin: 0 auto;
+      animation: seal-in 900ms var(--ease) both;
+    }
+
+    .seal svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    @keyframes seal-in {
+      from {
+        opacity: 0;
+        transform: scale(0.9) rotate(-6deg);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+      }
+    }
+
+    /* ===== INTRO STRIP ===== */
+    .intro {
+      max-width: 1180px;
+      margin: -34px auto 0;
+      position: relative;
+      z-index: 2;
+      padding: 0 6vw;
+    }
+
+    .intro-card {
+      background: var(--parchment);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      box-shadow: 0 30px 60px -30px rgba(27, 36, 30, 0.35);
+      padding: 30px 36px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .intro-card .it {
+      padding-left: 18px;
+      border-left: 1px solid var(--line);
+    }
+
+    .intro-card .it:first-child {
+      padding-left: 0;
+      border-left: none;
+    }
+
+    .intro-card .it .k {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .intro-card .it .v {
+      font-family: var(--serif);
+      font-size: 16.5px;
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+
+    /* ===== LAYOUT ===== */
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 84px 6vw 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 1.35fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .side {
+      position: sticky;
+      top: 48px;
+    }
+
+    .side .eyebrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--brass);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .side .eyebrow::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: var(--brass);
+    }
+
+    .side h2 {
+      font-family: var(--serif);
+      font-weight: 450;
+      font-size: clamp(1.7rem, 2.6vw, 2.3rem);
+      line-height: 1.16;
+      letter-spacing: -0.01em;
+    }
+
+    .side p {
+      margin-top: 18px;
+      color: var(--text-dim);
+      font-size: 14.5px;
+      line-height: 1.75;
+      max-width: 38ch;
+    }
+
+    .side .steps {
+      margin-top: 36px;
+    }
+
+    .step {
+      display: flex;
+      gap: 16px;
+      padding: 16px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .step:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .step .num {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 19px;
+      color: var(--brass);
+      width: 26px;
+      flex-shrink: 0;
+    }
+
+    .step .t {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .step .d {
+      font-size: 13px;
+      color: var(--text-dim);
+      margin-top: 3px;
+      line-height: 1.6;
+    }
+
+    .side .assurance {
+      margin-top: 36px;
+      padding: 18px 20px;
+      background: var(--parchment-2);
+      border-radius: 3px;
+      border-left: 2px solid var(--brass);
+    }
+
+    .side .assurance p {
+      margin-top: 0;
+      font-size: 12.5px;
+      color: var(--text-dim);
+      max-width: none;
+      line-height: 1.65;
+    }
+
+    /* ===== FORM (the "acte") ===== */
+    .deed {
+      background: #FBF8F1;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      box-shadow: 0 24px 60px -32px rgba(27, 36, 30, 0.28);
+    }
+
+    .deed-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 30px 40px;
+      border-bottom: 1px solid var(--line);
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .deed-head h3 {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 450;
+    }
+
+    .deed-ref {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-dim);
+      text-align: right;
+      letter-spacing: 0.03em;
+    }
+
+    .deed-ref b {
+      color: var(--brass);
+      font-weight: 600;
+    }
+
+    form {
+      padding: 8px 40px 40px;
+    }
+
+    fieldset {
+      border: none;
+      padding: 34px 0 6px;
+      border-top: 1px solid var(--line);
+    }
+
+    fieldset:first-of-type {
+      border-top: none;
+      padding-top: 22px;
+    }
+
+    legend {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      width: 100%;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 12.5px;
+      letter-spacing: 0.04em;
+      color: var(--brass);
+      padding: 0;
+      margin-bottom: 22px;
+    }
+
+    legend .roman {
+      font-size: 17px;
+      font-style: normal;
+      font-family: var(--serif);
+    }
+
+    legend .lbl {
+      text-transform: uppercase;
+      font-family: var(--mono);
+      font-style: normal;
+      font-size: 10.5px;
+      letter-spacing: 0.12em;
+      color: var(--text-dim);
+    }
+
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px 24px;
+    }
+
+    .field {
+      margin-bottom: 22px;
+    }
+
+    .field:last-child {
+      margin-bottom: 0;
+    }
+
+    .field label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .field .hint {
+      font-weight: 400;
+      color: var(--text-dim);
+      font-size: 11.5px;
+    }
+
+    .field input[type=text],
+    .field input[type=tel],
+    .field input[type=email],
+    .field input[type=date],
+    .field select,
+    .field textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(27, 36, 30, 0.28);
+      padding: 10px 2px;
+      font-family: var(--sans);
+      font-size: 15px;
+      color: var(--text);
+      transition: border-color 160ms var(--ease), background 160ms var(--ease);
+      border-radius: 0;
+    }
+
+    .field select {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%236B6656' stroke-width='1.5' fill='none' fill-rule='evenodd'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 4px center;
+      padding-right: 20px;
+    }
+
+    .field textarea {
+      resize: vertical;
+      min-height: 88px;
+      line-height: 1.6;
+    }
+
+    .field input:hover,
+    .field select:hover,
+    .field textarea:hover {
+      border-bottom-color: rgba(27, 36, 30, 0.5);
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      outline: none;
+      border-bottom-color: var(--brass);
+      background: rgba(160, 124, 62, 0.04);
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: rgba(107, 102, 86, 0.55);
+    }
+
+    .radio-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .radio-pill {
+      position: relative;
+    }
+
+    .radio-pill input {
+      position: absolute;
+      opacity: 0;
+      width: 1px;
+      height: 1px;
+    }
+
+    .radio-pill label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      padding: 11px 20px;
+      font-size: 13.5px;
+      font-weight: 500;
+      text-align: center;
+      border: 1px solid rgba(27, 36, 30, 0.22);
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 150ms var(--ease);
+      color: var(--text);
+      min-height: 44px;
+    }
+
+    .radio-pill input:checked+label {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--parchment);
+    }
+
+    .radio-pill input:focus-visible+label {
+      outline: 2px solid var(--brass);
+      outline-offset: 2px;
+    }
+
+    .consent {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+
+    .consent input {
+      margin-top: 3px;
+      width: 17px;
+      height: 17px;
+      accent-color: var(--ink);
+      flex-shrink: 0;
+    }
+
+    .consent label {
+      font-size: 12.5px;
+      color: var(--text-dim);
+      line-height: 1.65;
+    }
+
+    .submit-row {
+      margin-top: 30px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    button.submit {
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.01em;
+      background: var(--ink);
+      color: var(--parchment);
+      border: none;
+      padding: 15px 30px;
+      border-radius: 3px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 48px;
+      transition: transform 120ms var(--ease), background 160ms var(--ease);
+    }
+
+    button.submit:hover {
+      background: var(--deep-2);
+    }
+
+    button.submit:active {
+      transform: scale(0.97);
+    }
+
+    button.submit:disabled {
+      opacity: 0.6;
+      cursor: default;
+      transform: none;
+    }
+
+    button.submit svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .submit-note {
+      font-size: 11.5px;
+      color: var(--text-dim);
+    }
+
+    .field.error input,
+    .field.error select,
+    .field.error textarea {
+      border-bottom-color: #B5502F;
+    }
+
+    .field .err-msg {
+      display: none;
+      font-size: 11.5px;
+      color: #B5502F;
+      margin-top: 6px;
+    }
+
+    .field.error .err-msg {
+      display: block;
+    }
+
+    /* Confirmation state */
+    .confirm {
+      display: none;
+      padding: 64px 40px 60px;
+      text-align: center;
+    }
+
+    .confirm.show {
+      display: block;
+    }
+
+    form.hidden {
+      display: none;
+    }
+
+    .confirm .mark {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 22px;
+    }
+
+    .confirm h3 {
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 450;
+    }
+
+    .confirm p {
+      margin-top: 12px;
+      color: var(--text-dim);
+      max-width: 42ch;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+      font-size: 14.5px;
+    }
+
+    .confirm .ref {
+      margin-top: 22px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--brass);
+      letter-spacing: 0.04em;
+    }
+
+    .ref-copy {
+      font-family: inherit;
+      font-size: inherit;
+      letter-spacing: inherit;
+      color: inherit;
+      background: transparent;
+      border: none;
+      border-bottom: 1px dashed var(--brass);
+      cursor: pointer;
+      padding: 2px 4px;
+      transition: background 150ms var(--ease);
+    }
+    .ref-copy:hover { background: rgba(160,124,62,0.1); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--deep);
+      color: rgba(241, 233, 216, 0.6);
+      padding: 48px 6vw 34px;
+      margin-top: 60px;
+    }
+
+    .foot-in {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+      align-items: flex-end;
+    }
+
+    .foot-in .fname {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 17px;
+      color: var(--parchment);
+    }
+
+    .foot-in .fmeta {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      margin-top: 6px;
+      line-height: 1.8;
+    }
+
+    .foot-in .fnote {
+      font-size: 11.5px;
+      max-width: 32ch;
+      line-height: 1.7;
+      text-align: right;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 920px) {
+      .lh-main {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .lh-copy .eyebrow {
+        justify-content: center;
+      }
+
+      .lh-copy h1 {
+        max-width: none;
+      }
+
+      .lh-copy .practitioner {
+        justify-content: center;
+      }
+
+      .seal {
+        order: -1;
+        width: 130px;
+        height: 130px;
+      }
+
+      .intro-card {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .intro-card .it {
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid var(--line);
+        padding-top: 16px;
+      }
+
+      .intro-card .it:first-child {
+        border-top: none;
+        padding-top: 0;
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .side {
+        position: static;
+      }
+
+      .grid2 {
+        grid-template-columns: 1fr;
+      }
+
+      form {
+        padding: 8px 24px 32px;
+      }
+
+      .deed-head {
+        padding: 26px 24px;
+      }
+
+      .foot-in {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+      }
+
+      .foot-in .fnote {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="letterhead">
+    <div class="lh-bar">
+      <span>Cabinet El Ghiati — Étude notariale</span>
+      <span>Fès · Royaume du Maroc</span>
+    </div>
+    <div class="lh-main">
+      <div class="lh-copy">
+        <div class="eyebrow">Prise de rendez-vous</div>
+        <h1>Confiez votre dossier à <em>des mains sûres.</em></h1>
+        <p class="sub">Renseignez les informations ci-dessous pour ouvrir votre dossier. Le cabinet vous recontacte sous
+          48&nbsp;heures ouvrées afin de convenir d'un rendez-vous.</p>
+        <div class="practitioner">
+          <div>
+            <div class="name">Meryem El Ghiati</div>
+            <div class="role">Notaire · Officier public</div>
+          </div>
+        </div>
+      </div>
+      <div class="seal" aria-hidden="true">
+        <svg viewBox="0 0 200 200">
+          <defs>
+            <path id="ringPath" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0" />
+          </defs>
+          <circle cx="100" cy="100" r="94" fill="none" stroke="#C7A868" stroke-width="1" opacity="0.55" />
+          <circle cx="100" cy="100" r="78" fill="none" stroke="#C7A868" stroke-width="1.2" />
+          <circle cx="100" cy="100" r="60" fill="none" stroke="#C7A868" stroke-width="0.6" opacity="0.5" />
+          <text font-family="JetBrains Mono" font-size="9.5" letter-spacing="3.4" fill="#C7A868">
+            <textPath href="#ringPath" startOffset="1%">NOTAIRE · CABINET EL GHIATI · ROYAUME DU MAROC ·</textPath>
+          </text>
+          <text x="100" y="112" text-anchor="middle" font-family="Fraunces" font-style="italic" font-size="46"
+            fill="#F1E9D8">MEG</text>
+        </svg>
+      </div>
+    </div>
+  </header>
+
+  <div class="intro">
+    <div class="intro-card">
+      <div class="it">
+        <div class="k">Domaines traités</div>
+        <div class="v">Immobilier, successions, droit de la famille, sociétés</div>
+      </div>
+      <div class="it">
+        <div class="k">Délai de réponse</div>
+        <div class="v">Sous 48 heures ouvrées</div>
+      </div>
+      <div class="it">
+        <div class="k">Confidentialité</div>
+        <div class="v">Secret professionnel du notariat</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="layout">
+
+      <aside class="side">
+        <div class="eyebrow">Comment ça se passe</div>
+        <h2>Trois étapes avant votre rendez-vous</h2>
+        <p>Ce formulaire sert à ouvrir votre dossier auprès du cabinet. Aucune démarche officielle n'est engagée à ce
+          stade — il s'agit d'une prise de contact.</p>
+
+        <div class="steps">
+          <div class="step">
+            <div class="num">I.</div>
+            <div>
+              <div class="t">Vous transmettez vos informations</div>
+              <div class="d">Coordonnées et nature de votre besoin, en quelques minutes.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="num">II.</div>
+            <div>
+              <div class="t">Le cabinet étudie votre demande</div>
+              <div class="d">Un clerc ou Me El Ghiati évalue les pièces nécessaires à votre dossier.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="num">III.</div>
+            <div>
+              <div class="t">Vous êtes recontacté</div>
+              <div class="d">Par téléphone ou e-mail, pour fixer un rendez-vous en étude.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="assurance">
+          <p>Les informations transmises via ce formulaire sont réservées à l'usage exclusif du cabinet de Me Meryem El
+            Ghiati et ne sont communiquées à aucun tiers.</p>
+        </div>
+      </aside>
+
+      <div class="deed">
+        <div class="deed-head">
+          <h3>Formulaire de prise de contact</h3>
+          <div class="deed-ref">RÉF. DOSSIER<br><b id="refCode">EG-2026-••••</b></div>
+        </div>
+
+        <form id="intakeForm" novalidate>
+
+          <fieldset>
+            <legend><span class="roman">I.</span> <span class="lbl">Vos coordonnées</span></legend>
+
+            <div class="field">
+              <label for="civilite">Civilité</label>
+              <select id="civilite" name="civilite" required>
+                <option value="" disabled selected>Sélectionnez</option>
+                <option>Madame</option>
+                <option>Monsieur</option>
+                <option>Maître</option>
+              </select>
+              <div class="err-msg">Veuillez sélectionner une civilité.</div>
+            </div>
+
+            <div class="grid2">
+              <div class="field">
+                <label for="prenom">Prénom</label>
+                <input type="text" id="prenom" name="prenom" autocomplete="given-name" required>
+                <div class="err-msg">Veuillez indiquer votre prénom.</div>
+              </div>
+              <div class="field">
+                <label for="nom">Nom</label>
+                <input type="text" id="nom" name="nom" autocomplete="family-name" required>
+                <div class="err-msg">Veuillez indiquer votre nom.</div>
+              </div>
+            </div>
+
+            <div class="grid2">
+              <div class="field">
+                <label for="telephone">Téléphone</label>
+                <input type="tel" id="telephone" name="telephone" placeholder="+212 6 00 00 00 00" autocomplete="tel"
+                  required>
+                <div class="err-msg">Veuillez indiquer un numéro de téléphone.</div>
+              </div>
+              <div class="field">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" autocomplete="email" required>
+                <div class="err-msg">Veuillez indiquer une adresse e-mail valide.</div>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend><span class="roman">II.</span> <span class="lbl">Nature du dossier</span></legend>
+
+            <div class="field">
+              <label for="typeDossier">Type de dossier</label>
+              <select id="typeDossier" name="typeDossier" required>
+                <option value="" disabled selected>Sélectionnez la nature de votre demande</option>
+                <option>Achat ou vente immobilière</option>
+                <option>Succession et héritage</option>
+                <option>Contrat de mariage / régime matrimonial</option>
+                <option>Création ou cession d'entreprise</option>
+                <option>Procuration</option>
+                <option>Donation</option>
+                <option>Autre</option>
+              </select>
+              <div class="err-msg">Veuillez sélectionner un type de dossier.</div>
+            </div>
+
+            <div class="field">
+              <label for="description">Description brève <span class="hint">(facultatif)</span></label>
+              <textarea id="description" name="description"
+                placeholder="Quelques mots sur votre situation, pour préparer votre dossier en amont."></textarea>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend><span class="roman">III.</span> <span class="lbl">Rendez-vous souhaité</span></legend>
+
+            <div class="grid2">
+              <div class="field">
+                <label for="dateSouhaitee">Date souhaitée <span class="hint">(indicative)</span></label>
+                <input type="date" id="dateSouhaitee" name="dateSouhaitee">
+              </div>
+              <div class="field">
+                <label>Créneau préféré</label>
+                <div class="radio-row">
+                  <div class="radio-pill">
+                    <input type="radio" id="creneauMatin" name="creneau" value="Matin" checked>
+                    <label for="creneauMatin">Matin</label>
+                  </div>
+                  <div class="radio-pill">
+                    <input type="radio" id="creneauApm" name="creneau" value="Après-midi">
+                    <label for="creneauApm">Après-midi</label>
+                  </div>
+                  <div class="radio-pill">
+                    <input type="radio" id="creneauIndiff" name="creneau" value="Indifférent">
+                    <label for="creneauIndiff">Indifférent</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="connu">Comment avez-vous connu le cabinet ? <span class="hint">(facultatif)</span></label>
+              <select id="connu" name="connu">
+                <option value="" selected>Sélectionnez</option>
+                <option>Recommandation</option>
+                <option>Recherche en ligne</option>
+                <option>Client existant</option>
+                <option>Autre professionnel (avocat, agent immobilier…)</option>
+                <option>Autre</option>
+              </select>
+            </div>
+          </fieldset>
+
+          <div class="consent">
+            <input type="checkbox" id="consent" name="consent" required>
+            <label for="consent">J'accepte que les informations renseignées ci-dessus soient transmises au cabinet de Me
+              Meryem El Ghiati aux fins exclusives du traitement de ma demande de rendez-vous.</label>
+          </div>
+
+          <div class="submit-row">
+            <button type="submit" class="submit" id="submitBtn">
+              <span id="submitLabel">Transmettre ma demande</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </button>
+            <span class="submit-note">Aucune démarche officielle n'est engagée à ce stade.</span>
+          </div>
+        </form>
+
+        <div class="confirm" id="confirmPanel">
+          <div class="mark" aria-hidden="true">
+            <svg viewBox="0 0 56 56" fill="none">
+              <circle cx="28" cy="28" r="27" stroke="#A07C3E" stroke-width="1.2" />
+              <path d="M17 29l7 7 15-15" stroke="#A07C3E" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <h3>Votre demande a été transmise</h3>
+          <p>Le cabinet de Me Meryem El Ghiati a bien reçu votre dossier et vous recontactera sous 48 heures ouvrées
+            afin de convenir d'un rendez-vous.</p>
+          <div class="ref" id="confirmRef">RÉF. <button type="button" class="ref-copy" id="refCopy" title="Copier la référence">EG-2026-••••</button></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="foot-in">
+      <div>
+        <div class="fname">Meryem El Ghiati</div>
+        <div class="fmeta">Notaire · Fès, Royaume du Maroc<br>Cabinet ouvert du lundi au vendredi, 9h–17h</div>
+      </div>
+      <div class="fnote">Les informations transmises via ce formulaire sont traitées de manière confidentielle par le
+        cabinet.</div>
+    </div>
+  </footer>
+
+  <script>
+    // ── Configuration ──────────────────────────────────────────────
+    // Paste the Google Apps Script Web App deployment URL below.
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxeDX8VMrKZVxOs9OAartfBDzvy2fEBZs6WCFHnVB4I4FsCuqpok3nx1yG-uL5QNK2R/exec";
+
+    const refCode = 'EG-' + new Date().getFullYear() + '-' + Math.floor(1000 + Math.random() * 9000);
+    document.getElementById('refCode').textContent = refCode;
+    document.getElementById('refCopy').textContent = refCode;
+
+    document.getElementById('refCopy').addEventListener('click', function () {
+      navigator.clipboard.writeText(refCode).then(function () {
+        document.getElementById('refCopy').textContent = 'Copié !';
+        setTimeout(function () { document.getElementById('refCopy').textContent = refCode; }, 1500);
+      });
+    });
+
+    const form = document.getElementById('intakeForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const submitLabel = document.getElementById('submitLabel');
+    const confirmPanel = document.getElementById('confirmPanel');
+
+    function fieldWrap(el) { return el.closest('.field'); }
+
+    function validate() {
+      let valid = true;
+      form.querySelectorAll('[required]').forEach(function (el) {
+        const wrap = fieldWrap(el);
+        if (!wrap) return;
+        let ok = true;
+        if (el.type === 'checkbox') { ok = el.checked; }
+        else if (el.type === 'email') { ok = el.value.trim() !== '' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value); }
+        else { ok = el.value.trim() !== ''; }
+        wrap.classList.toggle('error', !ok);
+        if (!ok) valid = false;
+      });
+      return valid;
+    }
+
+    form.querySelectorAll('[required]').forEach(function (el) {
+      el.addEventListener('input', function () {
+        const wrap = fieldWrap(el);
+        if (wrap) wrap.classList.remove('error');
+      });
+      el.addEventListener('change', function () {
+        const wrap = fieldWrap(el);
+        if (wrap) wrap.classList.remove('error');
+      });
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!validate()) {
+        const firstError = form.querySelector('.field.error');
+        if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      const data = Object.fromEntries(new FormData(form).entries());
+      data.reference = refCode;
+      data.dateSoumission = new Date().toISOString();
+
+      submitBtn.disabled = true;
+      submitLabel.textContent = 'Envoi en cours…';
+
+      const done = function () {
+        form.classList.add('hidden');
+        confirmPanel.classList.add('show');
+      };
+
+      if (SCRIPT_URL.indexOf('PASTE_YOUR') === 0) {
+        // No deployment URL configured yet — show confirmation locally so the
+        // form can still be reviewed and tested before Sheets sync is wired up.
+        setTimeout(done, 500);
+        return;
+      }
+
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'cors',
+        redirect: 'follow',
+        body: JSON.stringify(data)
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (res) {
+          if (res.status === 'ok') { done(); }
+          else { throw new Error(res.message || 'Erreur serveur'); }
+        })
+        .catch(function (err) {
+          console.error('Submission failed:', err);
+          submitBtn.disabled = false;
+          submitLabel.textContent = 'Transmettre ma demande';
+          alert("La demande n'a pas pu être envoyée. Merci de réessayer ou de contacter le cabinet directement.");
+        });
+    });
+  </script>
+</body>
+
+</html>
